@@ -1,25 +1,39 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import Home from './pages/Home/Home/Home';
+import ExploreWatches from './pages/Home/ExploreWatches/ExploreWatches';
+import Login from './pages/Login/Login';
+import FeaturedWatches from './pages/Home/FeaturedWatches/FeaturedWatches';
+import NotFound from './pages/NotFound/NotFound';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+   return (
+      <div className="App">
+         <BrowserRouter>
+            <Switch>
+               <Route exact path="/">
+                  <Home />
+               </Route>
+               <Route path="/home">
+                  <Home />
+               </Route>
+               <Route path="/exploreWatches">
+                  <ExploreWatches />
+               </Route>
+               <Route path="/featuredWatches">
+                  <FeaturedWatches />
+               </Route>
+               <Route path="/login">
+                  <Login />
+               </Route>
+               <Route path="*">
+                  <NotFound />
+               </Route>
+            </Switch>
+         </BrowserRouter>
+      </div>
+   );
 }
 
 export default App;
