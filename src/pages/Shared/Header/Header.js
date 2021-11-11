@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 
 const Header = () => {
    // const { user, logOut } = useAuth();
+
    return (
       <>
          <Navbar
@@ -35,8 +36,8 @@ const Header = () => {
                      <Nav.Link as={Link} to="/addTour" className="text-light">
                         AddTour
                      </Nav.Link>
-                  )}
-                  {user.email && (
+                  )} */}
+                  {/* {user.email && (
                      <Nav.Link as={Link} to="/orders" className="text-light">
                         Orders
                      </Nav.Link>
@@ -44,17 +45,17 @@ const Header = () => {
                   {user.email && (
                      <Nav.Link
                         as={Link}
-                        to="/manageAllOrders"
+                        to="/manageOrders"
                         className="text-light"
                      >
-                        ManageAllOrders
+                        ManageOrders
                      </Nav.Link>
                   )}
                   <Nav.Link as={Link} to="/about" className="text-light">
-                     About
-                  </Nav.Link> */}
+                     AboutUs
+                  </Nav.Link>
 
-                  {/* {user?.email ? (
+                  {user?.email ? (
                      <Button onClick={logOut} className="m-2" variant="light">
                         Logout
                      </Button>

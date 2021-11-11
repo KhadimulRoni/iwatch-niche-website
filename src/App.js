@@ -6,6 +6,7 @@ import ExploreWatches from './pages/Home/ExploreWatches/ExploreWatches';
 import Login from './pages/Login/Login';
 import FeaturedWatches from './pages/Home/FeaturedWatches/FeaturedWatches';
 import NotFound from './pages/NotFound/NotFound';
+import AboutUs from './pages/Home/AboutUs/AboutUs';
 
 function App() {
    return (
@@ -23,6 +24,9 @@ function App() {
                </Route>
                <Route path="/featuredWatches">
                   <FeaturedWatches />
+               </Route>
+               <Route path="/about">
+                  <AboutUs />
                </Route>
                <Route path="/login">
                   <Login />
