@@ -32,11 +32,11 @@ const Header = () => {
                   >
                      ExploreWatches
                   </Nav.Link>
-                  {/* {user.email && (
-                     <Nav.Link as={Link} to="/addTour" className="text-light">
-                        AddTour
+                  {user.email && (
+                     <Nav.Link as={Link} to="/addWatch" className="text-light">
+                        AddWatch
                      </Nav.Link>
-                  )} */}
+                  )}
                   {user.email && (
                      <Nav.Link as={Link} to="/orders" className="text-light">
                         Orders
