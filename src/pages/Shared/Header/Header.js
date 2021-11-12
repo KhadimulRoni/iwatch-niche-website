@@ -1,10 +1,10 @@
 import React from 'react';
 import { Button, Container, Nav, Navbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-// import useAuth from '../../../hooks/useAuth';
+import useAuth from '../../../hooks/useAuth';
 
 const Header = () => {
-   // const { user, logOut } = useAuth();
+   const { user, logOut } = useAuth();
 
    return (
       <>
@@ -37,7 +37,7 @@ const Header = () => {
                         AddTour
                      </Nav.Link>
                   )} */}
-                  {/* {user.email && (
+                  {user.email && (
                      <Nav.Link as={Link} to="/orders" className="text-light">
                         Orders
                      </Nav.Link>
@@ -67,7 +67,7 @@ const Header = () => {
 
                   <Navbar.Text>
                      Signed in as: <a href="#login">{user?.displayName}</a>
-                  </Navbar.Text> */}
+                  </Navbar.Text>
                </Navbar.Collapse>
             </Container>
          </Navbar>

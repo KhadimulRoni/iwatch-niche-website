@@ -1,39 +1,109 @@
-// import React from 'react';
-// import useAuth from '../../../Hooks/useAuth';
-
-import React from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Button, Col, Form, Row } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import useAuth from '../../hooks/useAuth';
+import initializeFirebase from './Firebase/firebase.init';
+
+initializeFirebase();
 
 const Login = () => {
-   const { signInWithGoogle, setUser, setIsLoading } = useAuth();
+   const { signInUsingGoogle } = useAuth();
 
-   const history = useHistory();
-   const location = useLocation();
+   /* -------Login Handler------ */
+   const [email, setEmail] = useState('');
+   const [password, setPassword] = useState('');
+   const [user, setUser] = useState({});
+   const [error, setError] = useState('');
 
-   const url = location.state?.from || '/home';
+   const auth = getAuth();
 
-   // const Login = () => {
-   //     const {signInWithGoogle} = useAuth();
-
-   const handleGoogleLogin = () => {
-      signInWithGoogle()
-         .then(res => {
-            setIsLoading(true);
-            setUser(res.user);
-            // sessionStorage.setItem('email', res.user.email);
-            history.push(url);
-         })
-         .catch(err => console.log(err))
-         .finally(() => {
-            setIsLoading(false);
-         });
+   const HandleEmailChange = e => {
+      setEmail(e.target.value);
+   };
+   const HandlePasswordChange = e => {
+      const password = e.target.value;
+      setPassword(password);
    };
 
+   const handleLogin = e => {
+      e.preventDefault();
+
+      if (password?.length < 8) {
+         setError('Password must be at least 8 character');
+         return;
+      } else {
+         setPassword(e.target.value);
+      }
+      createUserWithEmailAndPassword(auth, email, password, user)
+         .then(result => {
+            const user = result?.user;
+            setEmail(email);
+            setUser(user);
+            setError('');
+         })
+         .catch(error => {
+            setError(error.message);
+         });
+   };
    return (
-      <div style={{ height: '80vh' }}>
-         <h2 className="tours p-4">- Please Login -</h2>
-         <button onClick={handleGoogleLogin} className="btn btn-warning">
+      <div className="container p-5 w-50">
+         <div>
+            <h2 className="text-primary p-3">Log in to your account</h2>
+         </div>
+         <Form onSubmit={handleLogin}>
+            <Form.Group
+               as={Row}
+               className="mb-3"
+               controlId="formHorizontalEmail"
+            >
+               <Form.Label column sm={2}>
+                  Email
+               </Form.Label>
+               <Col sm={10}>
+                  <Form.Control
+                     onChange={HandleEmailChange}
+                     type="email"
+                     placeholder="Email"
+                  />
+               </Col>
+            </Form.Group>
+
+            <Form.Group
+               as={Row}
+               className="mb-3"
+               controlId="formHorizontalPassword"
+            >
+               <Form.Label column sm={2}>
+                  Password
+               </Form.Label>
+               <Col sm={10}>
+                  <Form.Control
+                     onChange={HandlePasswordChange}
+                     type="password"
+                     placeholder="Password"
+                  />
+               </Col>
+            </Form.Group>
+
+            <p>
+               Don't have an account ?{' '}
+               <Link to="/registration">Create an Account</Link>
+            </p>
+            <p className="text-danger p-3">{error}</p>
+            <Form.Group as={Row} className="mb-3">
+               <Col sm={{}}>
+                  <Button className="btn btn-primary" type="submit">
+                     Log in
+                  </Button>
+               </Col>
+            </Form.Group>
+         </Form>
+
+         <div>
+            <h6 className="p-3">--- or ---</h6>
+         </div>
+         <button onClick={signInUsingGoogle} className="btn btn-info">
             Google Sign In
          </button>
       </div>
@@ -41,81 +111,3 @@ const Login = () => {
 };
 
 export default Login;
-
-// import React, { useState } from "react";
-// import { Link, useHistory, useLocation } from 'react-router-dom';
-// import useAuth from '../../../Hooks/useAuth';
-
-// const Login = () => {
-//   const { signInWithGoogle,setUser ,loginWithEmailAndPassword, setIsLoading} = useAuth();
-
-// const history= useHistory()
-// const location = useLocation()
-
-// const url= location.state?.from || "/booking/:id"
-
-// const [email , setEmail]= useState("")
-// const [password , setPassword] = useState("")
-
-// const handleGetEmail = (e) =>{
-//   setEmail(e.target.value);
-// }
-
-// const handleGetPassword = (e)=> {
-//     setPassword(e.target.value);
-// }
-
-// const handleLoginWithEmailAndPassword=(e)=>{
-//     e.preventDefault();
-
-//     loginWithEmailAndPassword(email,password)
-//     .then((res) => {
-//       setIsLoading(true)
-//         setUser(res.user);
-//         history.push(url)
-//         // ...
-//       })
-//       .catch((error) => {
-//         const errorCode = error.code;
-//         const errorMessage = error.message;
-//       })
-//       .finally(() => {
-//         setIsLoading(false)
-//       })
-// }
-
-//   const handleGoogleLogin = () => {
-//     signInWithGoogle()
-//       .then((res) =>
-//         {
-//           setIsLoading(true)
-//           setUser(res.user)
-//           history.push(url)
-//         }
-//           )
-//       .catch((err) => console.log(err))
-//       .finally(() => {
-//         setIsLoading(false)
-//       })
-//   };
-
-//   return (
-// <div className="text-center">
-//   <h2>This is Login </h2>
-//   <form onSubmit={handleLoginWithEmailAndPassword}>
-//       <input type="email" onBlur={handleGetEmail} placeholder="Email"/>
-//       <br/>
-//       <input type="password" onBlur={handleGetPassword} placeholder="Password"/>
-//       <br/>
-//       <br/>
-//       <input type="submit" value ="login"/>
-
-//   </form>
-//   <button onClick={handleGoogleLogin}>Google Sign In</button>
-//   <p> New User ?<Link to="/register">Please register</Link ></p>
-
-// </div>
-//   );
-// };
-
-// export default Login;
