@@ -13,13 +13,14 @@ const PlaceOrders = () => {
 
    const onSubmit = data => {
       data.email = user.email;
+      // console.log(data);
 
-      // axios.post('http://localhost:5000/orders', data).then(res => {
-      //    if (res.data.insertedId) {
-      //       alert('Order proceeded successfully');
-      //       reset();
-      //    }
-      // });
+      axios.post('http://localhost:5000/orders', data).then(res => {
+         if (res.data.insertedId) {
+            alert('Order proceeded successfully');
+            reset();
+         }
+      });
    };
 
    useEffect(() => {
@@ -30,7 +31,7 @@ const PlaceOrders = () => {
 
    return (
       <div className="p-5 row m-0">
-         <div className="col-lg-8 col-sm-12">
+         <div className="col-lg-6 col-sm-12">
             <img style={{ width: '70%' }} src={singleWatch?.img} alt="" />
             <h2 className="p-3 watch-title">{singleWatch?.name}</h2>
             <h6 className="p-2">{singleWatch?.description}</h6>
@@ -38,8 +39,8 @@ const PlaceOrders = () => {
                <span className="discount">{singleWatch?.price}</span>
             </h3>
          </div>
-         <div className="col-lg-4 col-sm-12 add-watch">
-            <h2 className=" p-3">- Booking Info -</h2>
+         <div className="col-lg-6 col-sm-12 add-watch">
+            <h2 className=" p-3">- Order Info -</h2>
             <form onSubmit={handleSubmit(onSubmit)}>
                <input
                   {...register('name')}
