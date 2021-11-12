@@ -1,20 +1,19 @@
 import React, { useState } from 'react';
-import { Button, Col, Form, Row } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { Button, Form } from 'react-bootstrap';
+import { Link, useHistory } from 'react-router-dom';
 import initializeFirebase from './Firebase/firebase.init';
 import useAuth from '../../hooks/useAuth';
+import { CircularProgress, Alert } from '@mui/material';
 
 initializeFirebase();
 
 const Registration = () => {
    const [registerData, setRegisterData] = useState({});
 
-   const [error, setError] = useState('');
+   const history = useHistory();
+   const { user, registerUser, loading, authError } = useAuth();
 
-   const { registerUser, loading,authError } = useAuth();
-
-   const handleOnChange = e => {
+   const handleOnBlur = e => {
       const field = e.target.name;
       const value = e.target.value;
       const newRegisterData = { ...registerData };
@@ -29,7 +28,12 @@ const Registration = () => {
          alert('Your Password did not match');
          return;
       }
-      registerUser(registerData?.email, registerData?.password);
+      registerUser(
+         registerData?.email,
+         registerData?.password,
+         registerData?.name,
+         history
+      );
       e.preventDefault();
    };
    return (
@@ -42,15 +46,15 @@ const Registration = () => {
             <Form onSubmit={handleRegister}>
                <Form.Group className="mb-3" controlId="formGridName">
                   <Form.Control
-                     onChange={handleOnChange}
-                     type="name"
+                     onBlur={handleOnBlur}
+                     type="text"
                      name="name"
                      placeholder="Enter Your Name"
                   />
                </Form.Group>
                <Form.Group className="mb-3" controlId="formGridEmail">
                   <Form.Control
-                     onChange={handleOnChange}
+                     onBlur={handleOnBlur}
                      type="email"
                      name="email"
                      placeholder="Enter email"
@@ -59,7 +63,7 @@ const Registration = () => {
 
                <Form.Group className="mb-3" controlId="formGridPassword">
                   <Form.Control
-                     onChange={handleOnChange}
+                     onBlur={handleOnBlur}
                      type="password"
                      name="password"
                      placeholder="Password"
@@ -67,24 +71,26 @@ const Registration = () => {
                </Form.Group>
                <Form.Group className="mb-3" controlId="formGridPassword">
                   <Form.Control
-                     onChange={handleOnChange}
+                     onBlur={handleOnBlur}
                      type="password"
                      name="password2"
                      placeholder="Re-Type-Password"
                   />
                </Form.Group>
 
-               <p>
+               <Button className="w-50" variant="primary" type="submit">
+                  Register Now
+               </Button>
+               <p className="p-2">
                   Already have an account ? <Link to="/login">Login</Link>
                </p>
-               <p className="text-danger">{error}</p>
-               <Button variant="primary" type="submit">
-                  Submit
-               </Button>
             </Form>
          )}
-         {loading && }
-         {}
+         {loading && <CircularProgress />}
+         {user?.email && (
+            <Alert severity="success">Registration successful !</Alert>
+         )}
+         {authError && <Alert severity="error">{authError}!</Alert>}
       </div>
    );
 };

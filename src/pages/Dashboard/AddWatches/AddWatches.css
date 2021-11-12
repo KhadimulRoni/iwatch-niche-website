@@ -1,0 +1,16 @@
+.add-watch form {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+}
+
+.add-watch form input,
+textarea {
+   width: 40%;
+   margin: 10px 0;
+}
+.submit {
+   border-radius: 25px;
+   font-weight: 600;
+}

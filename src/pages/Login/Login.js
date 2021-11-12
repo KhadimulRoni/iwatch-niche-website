@@ -1,109 +1,78 @@
 import React, { useState } from 'react';
-import { Button, Col, Form, Row } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
-import useAuth from '../../hooks/useAuth';
+import { Button, Form } from 'react-bootstrap';
+import { Link, useLocation, useHistory } from 'react-router-dom';
 import initializeFirebase from './Firebase/firebase.init';
+import useAuth from '../../hooks/useAuth';
+import { CircularProgress, Alert } from '@mui/material';
 
 initializeFirebase();
 
 const Login = () => {
-   const { signInUsingGoogle } = useAuth();
+   const [loginData, setLoginData] = useState({});
 
-   /* -------Login Handler------ */
-   const [email, setEmail] = useState('');
-   const [password, setPassword] = useState('');
-   const [user, setUser] = useState({});
-   const [error, setError] = useState('');
+   const { user, loginUser, signInWithGoogle, loading, authError } = useAuth();
 
-   const auth = getAuth();
+   const location = useLocation();
+   const history = useHistory();
 
-   const HandleEmailChange = e => {
-      setEmail(e.target.value);
-   };
-   const HandlePasswordChange = e => {
-      const password = e.target.value;
-      setPassword(password);
+   const handleOnBlur = e => {
+      const field = e.target.name;
+      const value = e.target.value;
+      const newLoginData = { ...loginData };
+      newLoginData[field] = value;
+      setLoginData(newLoginData);
    };
 
    const handleLogin = e => {
+      loginUser(loginData?.email, loginData?.password, location, history);
       e.preventDefault();
+   };
 
-      if (password?.length < 8) {
-         setError('Password must be at least 8 character');
-         return;
-      } else {
-         setPassword(e.target.value);
-      }
-      createUserWithEmailAndPassword(auth, email, password, user)
-         .then(result => {
-            const user = result?.user;
-            setEmail(email);
-            setUser(user);
-            setError('');
-         })
-         .catch(error => {
-            setError(error.message);
-         });
+   const handleGoogleSignIn = () => {
+      signInWithGoogle(location, history);
    };
    return (
       <div className="container p-5 w-50">
          <div>
             <h2 className="text-primary p-3">Log in to your account</h2>
          </div>
-         <Form onSubmit={handleLogin}>
-            <Form.Group
-               as={Row}
-               className="mb-3"
-               controlId="formHorizontalEmail"
-            >
-               <Form.Label column sm={2}>
-                  Email
-               </Form.Label>
-               <Col sm={10}>
+         {!loading && (
+            <Form onSubmit={handleLogin}>
+               <Form.Group className="mb-3" controlId="formGridEmail">
                   <Form.Control
-                     onChange={HandleEmailChange}
+                     onBlur={handleOnBlur}
                      type="email"
-                     placeholder="Email"
+                     name="email"
+                     placeholder="Enter email"
                   />
-               </Col>
-            </Form.Group>
+               </Form.Group>
 
-            <Form.Group
-               as={Row}
-               className="mb-3"
-               controlId="formHorizontalPassword"
-            >
-               <Form.Label column sm={2}>
-                  Password
-               </Form.Label>
-               <Col sm={10}>
+               <Form.Group className="mb-3" controlId="formGridPassword">
                   <Form.Control
-                     onChange={HandlePasswordChange}
+                     onBlur={handleOnBlur}
                      type="password"
+                     name="password"
                      placeholder="Password"
                   />
-               </Col>
-            </Form.Group>
+               </Form.Group>
 
-            <p>
-               Don't have an account ?{' '}
-               <Link to="/registration">Create an Account</Link>
-            </p>
-            <p className="text-danger p-3">{error}</p>
-            <Form.Group as={Row} className="mb-3">
-               <Col sm={{}}>
-                  <Button className="btn btn-primary" type="submit">
-                     Log in
-                  </Button>
-               </Col>
-            </Form.Group>
-         </Form>
+               <Button className="w-50" variant="primary" type="submit">
+                  Login
+               </Button>
+               <p className="p-2">
+                  Don't have an account ?{' '}
+                  <Link to="/registration">Create an account</Link>
+               </p>
+            </Form>
+         )}
+         {loading && <CircularProgress />}
+         {user?.email && <Alert severity="success">Login successful !</Alert>}
+         {authError && <Alert severity="error">{authError}!</Alert>}
 
          <div>
-            <h6 className="p-3">--- or ---</h6>
+            <h6 className="p-3">-------------</h6>
          </div>
-         <button onClick={signInUsingGoogle} className="btn btn-info">
+         <button onClick={handleGoogleSignIn} className="btn btn-info">
             Google Sign In
          </button>
       </div>
