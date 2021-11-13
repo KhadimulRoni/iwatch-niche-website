@@ -10,6 +10,7 @@ import {
    updateProfile,
    onAuthStateChanged,
 } from 'firebase/auth';
+import axios from 'axios';
 
 // initializing firebase app
 initializeFirebase();
@@ -29,6 +30,8 @@ const useFirebase = () => {
             setAuthError('');
             const newUser = { email, displayName: name };
             setUser(newUser);
+            // save user in database
+            saveUser(email, name);
             updateProfile(auth.currentUser, {
                displayName: name,
             })
@@ -66,9 +69,10 @@ const useFirebase = () => {
       setLoading(true);
       signInWithPopup(auth, googleProvider)
          .then(result => {
-            const destination = location?.state?.from || '/';
+            const destination = '/';
             history.replace(destination);
             const user = result.user;
+            saveGoogleUser(user?.email, user?.displayName);
             setAuthError('');
          })
          .catch(error => {
@@ -99,6 +103,15 @@ const useFirebase = () => {
             // An error happened.
          })
          .finally(() => setLoading(false));
+   };
+
+   const saveUser = (email, displayName) => {
+      const user = { email, displayName };
+      axios.post('http://localhost:5000/users', user).then(res => {});
+   };
+   const saveGoogleUser = (email, displayName) => {
+      const user = { email, displayName };
+      axios.put('http://localhost:5000/users', user).then(res => {});
    };
    return {
       user,

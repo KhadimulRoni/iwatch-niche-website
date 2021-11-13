@@ -1,8 +1,9 @@
-import { Button, TextField } from '@mui/material';
+import { Button, TextField, Alert } from '@mui/material';
 import React, { useState } from 'react';
 
 const MakeAdmin = () => {
    const [email, setEmail] = useState('');
+   const [success, setSuccess] = useState(false);
 
    const handleOnBlur = e => {
       setEmail(e.target.value);
@@ -12,21 +13,24 @@ const MakeAdmin = () => {
       //    we can use Axios instead of this system
       fetch('http://localhost:5000/users/admin', {
          method: 'PUT',
-         header: {
+         headers: {
             'content-type': 'application/json',
          },
          body: JSON.stringify(user),
       })
          .then(res => res.json())
          .then(data => {
-            console.log(data);
+            if (data.modifiedCount) {
+               console.log(data);
+               setSuccess(true);
+            }
          });
 
       e.preventDefault();
    };
    return (
       <div>
-         <h2>This is make admin page</h2>
+         <h2>MAKE ADMIN</h2>
          <form onSubmit={handleOnSubmit}>
             <TextField
                style={{
@@ -41,10 +45,13 @@ const MakeAdmin = () => {
                variant="filled"
             />
             <br />
-            <Button type="submit" variant="contained">
-               Make Admin
+            <Button className="w-25" type="submit" variant="contained">
+               SUBMIT
             </Button>
          </form>
+         {success && (
+            <Alert severity="success">Admin Successfully Added !</Alert>
+         )}
       </div>
    );
 };

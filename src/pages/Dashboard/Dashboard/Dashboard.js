@@ -47,45 +47,63 @@ function Dashboard(props) {
    };
 
    const drawer = (
-      <div>
+      <div
+         style={{
+            color: 'yellow',
+            backgroundColor: '#191970',
+            height: '100vh',
+         }}
+      >
          <Toolbar />
          <Divider />
 
          <Link to="/home">
-            <Button color="inherit">HOME</Button>
+            <Button className="text-white" color="inherit">
+               HOME
+            </Button>
          </Link>
 
          <Divider />
-         <List className="p-3">
+         <List className="p-3 ">
             <li style={{ display: 'flex', alignItems: 'center' }}>
                <ShoppingCartIcon />
                <Link style={{ textDecoration: 'none' }} to={`${url}/orders`}>
-                  <Button color="inherit">MY ORDERS</Button>
+                  <Button className="text-white" color="inherit">
+                     MY ORDERS
+                  </Button>
                </Link>
             </li>
             <li style={{ display: 'flex', alignItems: 'center' }}>
                <PaymentIcon />
                <Link style={{ textDecoration: 'none' }} to={`${url}/payment`}>
-                  <Button color="inherit">PAYMENT</Button>
+                  <Button className="text-white" color="inherit">
+                     PAYMENT
+                  </Button>
                </Link>
             </li>
             <li style={{ display: 'flex', alignItems: 'center' }}>
                <ReviewsIcon />
                <Link style={{ textDecoration: 'none' }} to={`${url}/review`}>
-                  <Button color="inherit">REVIEW</Button>
+                  <Button className="text-white" color="inherit">
+                     REVIEW
+                  </Button>
                </Link>
             </li>
 
             <li style={{ display: 'flex', alignItems: 'center' }}>
                <ReviewsIcon />
                <Link style={{ textDecoration: 'none' }} to={`${url}/addWatch`}>
-                  <Button color="inherit">Add Watch</Button>
+                  <Button className="text-white" color="inherit">
+                     Add Watch
+                  </Button>
                </Link>
             </li>
             <li style={{ display: 'flex', alignItems: 'center' }}>
                <ReviewsIcon />
                <Link style={{ textDecoration: 'none' }} to={`${url}/makeAdmin`}>
-                  <Button color="inherit">Make Admin</Button>
+                  <Button className="text-white" color="inherit">
+                     Make Admin
+                  </Button>
                </Link>
             </li>
             <li style={{ display: 'flex', alignItems: 'center' }}>
@@ -94,7 +112,9 @@ function Dashboard(props) {
                   style={{ textDecoration: 'none' }}
                   to={`${url}/manageProducts`}
                >
-                  <Button color="inherit">Manage Products</Button>
+                  <Button className="text-white" color="inherit">
+                     Manage Products
+                  </Button>
                </Link>
             </li>
             <li style={{ display: 'flex', alignItems: 'center' }}>
@@ -103,7 +123,9 @@ function Dashboard(props) {
                   style={{ textDecoration: 'none' }}
                   to={`${url}/manageOrders`}
                >
-                  <Button color="inherit">Manage All Orders</Button>
+                  <Button className="text-white" color="inherit">
+                     Manage All Orders
+                  </Button>
                </Link>
             </li>
          </List>
@@ -185,7 +207,7 @@ function Dashboard(props) {
             </Drawer>
          </Box>
          <Box
-            style={{ backgroundColor: 'black', height: '100vh' }}
+            style={{ backgroundColor: '#4682B4', height: '100vh' }}
             component="main"
             sx={{
                flexGrow: 1,
@@ -194,6 +216,7 @@ function Dashboard(props) {
             }}
          >
             <Toolbar />
+
             <Switch>
                <Route path={`${path}/orders`}>
                   <Orders></Orders>

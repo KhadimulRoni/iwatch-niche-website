@@ -32,17 +32,17 @@ const Header = () => {
                   >
                      ExploreWatches
                   </Nav.Link>
-                  {user.email && (
+                  {/* {user.email && (
                      <Nav.Link as={Link} to="/addWatch" className="text-light">
                         AddWatch
                      </Nav.Link>
-                  )}
+                  )} */}
                   {user.email && (
                      <Nav.Link as={Link} to="/dashboard" className="text-light">
                         Dashboard
                      </Nav.Link>
                   )}
-                  {user.email && (
+                  {/* {user.email && (
                      <Nav.Link as={Link} to="/orders" className="text-light">
                         Orders
                      </Nav.Link>
@@ -55,7 +55,7 @@ const Header = () => {
                      >
                         ManageOrders
                      </Nav.Link>
-                  )}
+                  )} */}
                   <Nav.Link as={Link} to="/about" className="text-light">
                      AboutUs
                   </Nav.Link>

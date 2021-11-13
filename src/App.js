@@ -14,6 +14,7 @@ import Registration from './pages/Login/Registration';
 import AddWatches from './pages/Dashboard/AddWatches/AddWatches';
 import Dashboard from './pages/Dashboard/Dashboard/Dashboard';
 import ManageOrders from './pages/Home/Orders/ManageOrders/ManageOrders';
+import DisplayReview from './pages/Dashboard/Review/DisplayReview';
 
 function App() {
    return (
@@ -30,21 +31,24 @@ function App() {
                   <Route path="/exploreWatches">
                      <ExploreWatches />
                   </Route>
-                  <PrivateRoute path="/addWatch">
+                  <Route path="/displayReview">
+                     <DisplayReview />
+                  </Route>
+                  {/* <PrivateRoute path="/addWatch">
                      <AddWatches />
-                  </PrivateRoute>
+                  </PrivateRoute> */}
                   <PrivateRoute path="/exploreWatch/:id">
                      <PlaceOrders></PlaceOrders>
                   </PrivateRoute>
-                  <PrivateRoute path="/manageOrders">
+                  {/* <PrivateRoute path="/manageOrders">
                      <ManageOrders></ManageOrders>
-                  </PrivateRoute>
+                  </PrivateRoute> */}
                   <PrivateRoute path="/dashboard">
                      <Dashboard></Dashboard>
                   </PrivateRoute>
-                  <PrivateRoute path="/orders">
+                  {/* <PrivateRoute path="/orders">
                      <Orders></Orders>
-                  </PrivateRoute>
+                  </PrivateRoute> */}
                   <Route path="/about">
                      <AboutUs />
                   </Route>
