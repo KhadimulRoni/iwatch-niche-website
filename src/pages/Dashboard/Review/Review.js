@@ -1,9 +1,46 @@
+import axios from 'axios';
 import React from 'react';
+import { useForm } from 'react-hook-form';
+import useAuth from '../../../hooks/useAuth';
 
 const Review = () => {
+   const { register, handleSubmit, reset } = useForm();
+   const { user } = useAuth();
+
+   const onSubmit = data => {
+      // console.log(data);
+
+      axios.post('http://localhost:5000/addReview', data).then(res => {
+         if (res.data.insertedId) {
+            alert('watch added successfully');
+            reset();
+         }
+      });
+   };
+
    return (
       <div>
-         <h2>This is review page</h2>
+         <h2 className="text-white mb-3">Review</h2>
+         <form onSubmit={handleSubmit(onSubmit)}>
+            <input
+               className="my-2 w-50"
+               {...register('email', { required: true })}
+               value={user?.email}
+               name="email"
+               type="email"
+               required
+            />
+            <br />
+            <textarea
+               className="mb-2 w-50"
+               {...register('comments', { required: true })}
+               placeholder="Comments"
+               name="comments"
+               required
+            />
+            <br />
+            <input className="btn-warning w-25 py-1 submit" type="submit" />
+         </form>
       </div>
    );
 };
