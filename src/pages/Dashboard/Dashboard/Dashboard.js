@@ -6,24 +6,41 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
+import PaymentIcon from '@mui/icons-material/Payment';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import HouseIcon from '@mui/icons-material/House';
+import ReviewsIcon from '@mui/icons-material/Reviews';
 import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
+import {
+   BrowserRouter as Router,
+   Switch,
+   Route,
+   Link,
+   useParams,
+   useRouteMatch,
+} from 'react-router-dom';
 import Grid from '@mui/material/Grid';
 import { Button } from '@mui/material';
-import { Link } from 'react-router-dom';
+import ManageOrders from '../../Home/Orders/ManageOrders/ManageOrders';
+import Orders from '../../Home/Orders/Orders/Orders';
+import AddWatches from '../AddWatches/AddWatches';
+import useAuth from '../../../hooks/useAuth';
+import Payment from '../Payment/Payment';
+import Review from '../Review/Review';
+import MakeAdmin from '../MakeAdmin/MakeAdmin';
+import ManageProducts from '../ManageProducts/ManageProducts';
 
-const drawerWidth = 200;
+const drawerWidth = 230;
 
 function Dashboard(props) {
    const { window } = props;
    const [mobileOpen, setMobileOpen] = React.useState(false);
+   const { user, logOut } = useAuth();
+
+   let { path, url } = useRouteMatch();
 
    const handleDrawerToggle = () => {
       setMobileOpen(!mobileOpen);
@@ -33,18 +50,71 @@ function Dashboard(props) {
       <div>
          <Toolbar />
          <Divider />
-         <Link to="/exploreWatches">
-            <Button color="inherit">Explore</Button>
+
+         <Link to="/home">
+            <Button color="inherit">HOME</Button>
          </Link>
+
+         <Divider />
+         <List className="p-3">
+            <li style={{ display: 'flex', alignItems: 'center' }}>
+               <ShoppingCartIcon />
+               <Link style={{ textDecoration: 'none' }} to={`${url}/orders`}>
+                  <Button color="inherit">MY ORDERS</Button>
+               </Link>
+            </li>
+            <li style={{ display: 'flex', alignItems: 'center' }}>
+               <PaymentIcon />
+               <Link style={{ textDecoration: 'none' }} to={`${url}/payment`}>
+                  <Button color="inherit">PAYMENT</Button>
+               </Link>
+            </li>
+            <li style={{ display: 'flex', alignItems: 'center' }}>
+               <ReviewsIcon />
+               <Link style={{ textDecoration: 'none' }} to={`${url}/review`}>
+                  <Button color="inherit">REVIEW</Button>
+               </Link>
+            </li>
+
+            <li style={{ display: 'flex', alignItems: 'center' }}>
+               <ReviewsIcon />
+               <Link style={{ textDecoration: 'none' }} to={`${url}/addWatch`}>
+                  <Button color="inherit">Add Watch</Button>
+               </Link>
+            </li>
+            <li style={{ display: 'flex', alignItems: 'center' }}>
+               <ReviewsIcon />
+               <Link style={{ textDecoration: 'none' }} to={`${url}/makeAdmin`}>
+                  <Button color="inherit">Make Admin</Button>
+               </Link>
+            </li>
+            <li style={{ display: 'flex', alignItems: 'center' }}>
+               <ReviewsIcon />
+               <Link
+                  style={{ textDecoration: 'none' }}
+                  to={`${url}/manageProducts`}
+               >
+                  <Button color="inherit">Manage Products</Button>
+               </Link>
+            </li>
+            <li style={{ display: 'flex', alignItems: 'center' }}>
+               <ReviewsIcon />
+               <Link
+                  style={{ textDecoration: 'none' }}
+                  to={`${url}/manageOrders`}
+               >
+                  <Button color="inherit">Manage All Orders</Button>
+               </Link>
+            </li>
+         </List>
          <List>
-            {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-               <ListItem button key={text}>
-                  <ListItemIcon>
-                     {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                  </ListItemIcon>
-                  <ListItemText primary={text} />
-               </ListItem>
-            ))}
+            {user?.email ? (
+               <Button onClick={logOut} className="m-2" variant="contained">
+                  Logout
+               </Button>
+            ) : (
+               <Link to="/home" className="text-warning"></Link>
+            )}
          </List>
       </div>
    );
@@ -115,6 +185,7 @@ function Dashboard(props) {
             </Drawer>
          </Box>
          <Box
+            style={{ backgroundColor: 'black', height: '100vh' }}
             component="main"
             sx={{
                flexGrow: 1,
@@ -123,12 +194,29 @@ function Dashboard(props) {
             }}
          >
             <Toolbar />
-            <Typography paragraph>
-               <Grid container spacing={2}>
-                  <Grid item xs={12} sm={5}></Grid>
-                  <Grid item xs={12} sm={7}></Grid>
-               </Grid>
-            </Typography>
+            <Switch>
+               <Route path={`${path}/orders`}>
+                  <Orders></Orders>
+               </Route>
+               <Route path={`${path}/payment`}>
+                  <Payment></Payment>
+               </Route>
+               <Route path={`${path}/review`}>
+                  <Review></Review>
+               </Route>
+               <Route path={`${path}/addWatch`}>
+                  <AddWatches></AddWatches>
+               </Route>
+               <Route path={`${path}/makeAdmin`}>
+                  <MakeAdmin></MakeAdmin>
+               </Route>
+               <Route path={`${path}/manageOrders`}>
+                  <ManageOrders></ManageOrders>
+               </Route>
+               <Route path={`${path}/manageProducts`}>
+                  <ManageProducts></ManageProducts>
+               </Route>
+            </Switch>
          </Box>
       </Box>
    );

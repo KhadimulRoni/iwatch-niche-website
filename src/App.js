@@ -13,6 +13,7 @@ import AuthProvider from './context/AuthProvider';
 import Registration from './pages/Login/Registration';
 import AddWatches from './pages/Dashboard/AddWatches/AddWatches';
 import Dashboard from './pages/Dashboard/Dashboard/Dashboard';
+import ManageOrders from './pages/Home/Orders/ManageOrders/ManageOrders';
 
 function App() {
    return (
@@ -29,11 +30,14 @@ function App() {
                   <Route path="/exploreWatches">
                      <ExploreWatches />
                   </Route>
-                  <PrivateRoute path="/addWatches">
+                  <PrivateRoute path="/addWatch">
                      <AddWatches />
                   </PrivateRoute>
                   <PrivateRoute path="/exploreWatch/:id">
                      <PlaceOrders></PlaceOrders>
+                  </PrivateRoute>
+                  <PrivateRoute path="/manageOrders">
+                     <ManageOrders></ManageOrders>
                   </PrivateRoute>
                   <PrivateRoute path="/dashboard">
                      <Dashboard></Dashboard>
