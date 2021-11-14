@@ -3,7 +3,16 @@
    background-color: #f1f0f0a6;
 }
 h2 {
+   color: rgb(255, 145, 0);
+   font-size: '50px';
+   font-family: 'Bebas Neue', cursive;
+}
+h1 {
+   font-family: 'Anton', sans-serif;
+}
+h3 {
    color: gold;
+   font-weight: bold;
 }
 
 .App-logo {

@@ -23,7 +23,7 @@ const Footer = () => {
                   className="col d-flex"
                >
                   <div className="col-lg-4 col-sm-12 p-3 px-5">
-                     <h2>iWaTcH</h2>
+                     <h3>iWaTcH</h3>
                      <p>
                         Trusted watch shop near you.WE always try to provide
                         best service to our customer.We provide 24/7 support for
@@ -39,13 +39,9 @@ const Footer = () => {
                         to="/exploreWatches"
                         className="text-dark"
                      >
-                        ExploreWatches
+                        Explore
                      </Nav.Link>
-                     {/* {user.email && (
-                     <Nav.Link as={Link} to="/addWatch" className="text-dark">
-                        AddWatch
-                     </Nav.Link>
-                  )} */}
+
                      {user.email && (
                         <Nav.Link
                            as={Link}
@@ -55,20 +51,7 @@ const Footer = () => {
                            Dashboard
                         </Nav.Link>
                      )}
-                     {/* {user.email && (
-                     <Nav.Link as={Link} to="/orders" className="text-dark">
-                        Orders
-                     </Nav.Link>
-                  )}
-                  {user.email && (
-                     <Nav.Link
-                        as={Link}
-                        to="/manageOrders"
-                        className="text-dark"
-                     >
-                        ManageOrders
-                     </Nav.Link>
-                  )} */}
+
                      <Nav.Link as={Link} to="/about" className="text-dark">
                         AboutUs
                      </Nav.Link>

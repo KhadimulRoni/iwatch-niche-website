@@ -8,6 +8,9 @@ import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
 import PaymentIcon from '@mui/icons-material/Payment';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
+import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 import ReviewsIcon from '@mui/icons-material/Reviews';
 import List from '@mui/material/List';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -83,7 +86,7 @@ function Dashboard(props) {
             {admin && (
                <Box>
                   <li style={{ display: 'flex', alignItems: 'center' }}>
-                     <ReviewsIcon />
+                     <AddCircleIcon />
                      <Link
                         style={{ textDecoration: 'none' }}
                         to={`${url}/addWatch`}
@@ -94,7 +97,7 @@ function Dashboard(props) {
                      </Link>
                   </li>
                   <li style={{ display: 'flex', alignItems: 'center' }}>
-                     <ReviewsIcon />
+                     <PersonAddAlt1Icon />
                      <Link
                         style={{ textDecoration: 'none' }}
                         to={`${url}/makeAdmin`}
@@ -105,7 +108,7 @@ function Dashboard(props) {
                      </Link>
                   </li>
                   <li style={{ display: 'flex', alignItems: 'center' }}>
-                     <ReviewsIcon />
+                     <ManageAccountsIcon />
                      <Link
                         style={{ textDecoration: 'none' }}
                         to={`${url}/manageProducts`}
@@ -116,7 +119,7 @@ function Dashboard(props) {
                      </Link>
                   </li>
                   <li style={{ display: 'flex', alignItems: 'center' }}>
-                     <ReviewsIcon />
+                     <ManageAccountsIcon />
                      <Link
                         style={{ textDecoration: 'none' }}
                         to={`${url}/manageOrders`}

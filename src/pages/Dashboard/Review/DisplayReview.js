@@ -20,7 +20,7 @@ const DisplayReview = () => {
                   key={review?._id}
                >
                   <div className="col-lg-3 col-sm-12 ">
-                     <p className="text-danger">{review?.comments}</p>
+                     <p className="">{review?.comments}</p>
                      <h6 className="text-warning">
                         <small>{review?.email}</small>
                      </h6>
