@@ -38,7 +38,10 @@ const Orders = () => {
                         alt=""
                      />
                   </div>
-                  <div className="col-lg-9 col-sm-12">
+                  <div
+                     style={{ textAlign: 'left' }}
+                     className="col-lg-9 col-sm-12"
+                  >
                      <h5>{order?.name}</h5>
                      <h4>Price: {order?.price}$</h4>
                      <h6>Number: {order?.number}</h6>

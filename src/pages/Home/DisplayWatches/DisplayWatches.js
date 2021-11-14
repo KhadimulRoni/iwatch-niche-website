@@ -13,6 +13,10 @@ const DisplayWatches = () => {
    return (
       <div className="container" style={{ textAlign: 'center' }}>
          <h2>WATCH COLLECTION</h2>
+         <h5>
+            A watch is a portable timepiece intended to be carried or worn by a
+            person
+         </h5>
          <div className="row m-0  ">
             {watches?.map(watch => (
                <div
@@ -20,7 +24,16 @@ const DisplayWatches = () => {
                   className="col-lg-4 col-sm-12 p-3 d-flex"
                   key={watch._id}
                >
-                  <Card style={{ width: '20rem' }}>
+                  <Card
+                     style={{
+                        border: '1px solid white',
+                        width: '20rem',
+                        backgroundColor: 'white',
+                        padding: '20px',
+                        borderRadius: '10px',
+                        boxShadow: '2px 2px 2px 1px rgba(0, 0, 0, 0.1)',
+                     }}
+                  >
                      <Card.Img
                         style={{ width: '70%', margin: 'auto' }}
                         variant="top"

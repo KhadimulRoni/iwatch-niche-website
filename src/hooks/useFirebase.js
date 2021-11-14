@@ -56,7 +56,7 @@ const useFirebase = () => {
       setLoading(true);
       signInWithEmailAndPassword(auth, email, password)
          .then(userCredential => {
-            const destination = location?.state?.from || '/';
+            const destination = location?.state?.from || '/dashboard';
             history.replace(destination);
             setAuthError('');
          })
@@ -70,7 +70,7 @@ const useFirebase = () => {
       setLoading(true);
       signInWithPopup(auth, googleProvider)
          .then(result => {
-            const destination = '/';
+            const destination = '/dashboard';
             history.replace(destination);
             const user = result.user;
             saveGoogleUser(user?.email, user?.displayName);

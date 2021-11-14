@@ -1,3 +1,4 @@
+import { Divider } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import Footer from '../../Shared/Footer/Footer';
 import Header from '../../Shared/Header/Header';
@@ -14,8 +15,12 @@ const ExploreWatches = () => {
    return (
       <div>
          <Header></Header>
-         <div className="container">
+         <div className="container p-3">
             <h2 style={{ textAlign: 'center' }}>EXPLORE WATCHES</h2>
+            <h5 style={{ textAlign: 'center' }}>
+               A watch is a portable timepiece intended to be carried or worn by
+               a person
+            </h5>
             <div className="row m-0 ">
                {watches?.map(watch => (
                   <div
@@ -28,6 +33,8 @@ const ExploreWatches = () => {
                ))}
             </div>
          </div>
+         <br />
+         <Divider></Divider>
          <Footer></Footer>
       </div>
    );

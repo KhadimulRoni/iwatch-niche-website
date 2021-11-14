@@ -10,7 +10,7 @@ const DisplayReview = () => {
          .then(data => setReviews(data));
    }, []);
    return (
-      <div>
+      <div className="p-5">
          <h2 style={{ textAlign: 'center' }}>Users Review</h2>
          <div className="row m-0">
             {reviews?.map(review => (
@@ -20,7 +20,7 @@ const DisplayReview = () => {
                   key={review?._id}
                >
                   <div className="col-lg-3 col-sm-12 ">
-                     <h5 className="text-danger">{review?.comments}</h5>
+                     <p className="text-danger">{review?.comments}</p>
                      <h6 className="text-warning">
                         <small>{review?.email}</small>
                      </h6>
