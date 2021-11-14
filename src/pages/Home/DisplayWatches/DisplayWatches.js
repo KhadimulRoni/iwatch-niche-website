@@ -6,7 +6,7 @@ const DisplayWatches = () => {
    const [watches, setWatches] = useState([]);
 
    useEffect(() => {
-      fetch('http://localhost:5000/displayWatches')
+      fetch('https://glacial-hamlet-57290.herokuapp.com/displayWatches')
          .then(res => res.json())
          .then(data => setWatches(data));
    }, []);

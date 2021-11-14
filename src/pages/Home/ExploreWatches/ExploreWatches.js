@@ -8,7 +8,7 @@ const ExploreWatches = () => {
    const [watches, setWatches] = useState([]);
 
    useEffect(() => {
-      fetch('http://localhost:5000/allWatches')
+      fetch('https://glacial-hamlet-57290.herokuapp.com/allWatches')
          .then(res => res.json())
          .then(data => setWatches(data));
    }, []);

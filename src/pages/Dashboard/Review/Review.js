@@ -10,12 +10,14 @@ const Review = () => {
    const onSubmit = data => {
       // console.log(data);
 
-      axios.post('http://localhost:5000/addReview', data).then(res => {
-         if (res.data.insertedId) {
-            alert('watch added successfully');
-            reset();
-         }
-      });
+      axios
+         .post('https://glacial-hamlet-57290.herokuapp.com/addReview', data)
+         .then(res => {
+            if (res.data.insertedId) {
+               alert('watch added successfully');
+               reset();
+            }
+         });
    };
 
    return (

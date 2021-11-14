@@ -7,7 +7,7 @@ const Orders = () => {
    const [orders, setOrders] = useState([]);
 
    useEffect(() => {
-      fetch(`http://localhost:5000/myOrder/${user?.email}`)
+      fetch(`https://glacial-hamlet-57290.herokuapp.com/myOrder/${user?.email}`)
          .then(res => res.json())
          .then(data => setOrders(data));
    }, [user?.email]);

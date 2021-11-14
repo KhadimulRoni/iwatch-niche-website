@@ -9,12 +9,14 @@ const AddWatches = () => {
    const onSubmit = data => {
       // console.log(data);
 
-      axios.post('http://localhost:5000/addWatches', data).then(res => {
-         if (res.data.insertedId) {
-            alert('watch added successfully');
-            reset();
-         }
-      });
+      axios
+         .post('https://glacial-hamlet-57290.herokuapp.com/addWatches', data)
+         .then(res => {
+            if (res.data.insertedId) {
+               alert('watch added successfully');
+               reset();
+            }
+         });
    };
 
    return (

@@ -11,7 +11,7 @@ const MakeAdmin = () => {
    const handleOnSubmit = e => {
       const user = { email };
       //    we can use Axios instead of this system
-      fetch('http://localhost:5000/users/admin', {
+      fetch('https://glacial-hamlet-57290.herokuapp.com/users/admin', {
          method: 'PUT',
          headers: {
             'content-type': 'application/json',

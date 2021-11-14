@@ -96,7 +96,7 @@ const useFirebase = () => {
    }, []);
 
    useEffect(() => {
-      fetch(`http://localhost:5000/users/${user?.email}`)
+      fetch(`https://glacial-hamlet-57290.herokuapp.com/users/${user?.email}`)
          .then(res => res.json())
          .then(data => setAdmin(data.admin));
    }, [user?.email]);
@@ -114,11 +114,15 @@ const useFirebase = () => {
 
    const saveUser = (email, displayName) => {
       const user = { email, displayName };
-      axios.post('http://localhost:5000/users', user).then(res => {});
+      axios
+         .post('https://glacial-hamlet-57290.herokuapp.com/users', user)
+         .then(res => {});
    };
    const saveGoogleUser = (email, displayName) => {
       const user = { email, displayName };
-      axios.put('http://localhost:5000/users', user).then(res => {});
+      axios
+         .put('https://glacial-hamlet-57290.herokuapp.com/users', user)
+         .then(res => {});
    };
    return {
       user,

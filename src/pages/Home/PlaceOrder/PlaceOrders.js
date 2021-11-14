@@ -17,16 +17,18 @@ const PlaceOrders = () => {
       data.email = user.email;
       // console.log(data);
 
-      axios.post('http://localhost:5000/orders', data).then(res => {
-         if (res.data.insertedId) {
-            alert('Order proceeded successfully');
-            reset();
-         }
-      });
+      axios
+         .post('https://glacial-hamlet-57290.herokuapp.com/orders', data)
+         .then(res => {
+            if (res.data.insertedId) {
+               alert('Order proceeded successfully');
+               reset();
+            }
+         });
    };
 
    useEffect(() => {
-      fetch(`http://localhost:5000/singleWatch/${id}`)
+      fetch(`https://glacial-hamlet-57290.herokuapp.com/singleWatch/${id}`)
          .then(res => res.json())
          .then(data => setSingleWatch(data));
    }, []);
