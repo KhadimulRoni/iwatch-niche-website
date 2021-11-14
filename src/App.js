@@ -15,6 +15,7 @@ import AddWatches from './pages/Dashboard/AddWatches/AddWatches';
 import Dashboard from './pages/Dashboard/Dashboard/Dashboard';
 import ManageOrders from './pages/Home/Orders/ManageOrders/ManageOrders';
 import DisplayReview from './pages/Dashboard/Review/DisplayReview';
+import DisplayWatches from './pages/Home/DisplayWatches/DisplayWatches';
 
 function App() {
    return (
@@ -30,6 +31,9 @@ function App() {
                   </Route>
                   <Route path="/exploreWatches">
                      <ExploreWatches />
+                  </Route>
+                  <Route path="/displayWatches">
+                     <DisplayWatches />
                   </Route>
                   <Route path="/displayReview">
                      <DisplayReview />

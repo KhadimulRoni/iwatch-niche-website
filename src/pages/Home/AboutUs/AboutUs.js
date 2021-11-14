@@ -6,7 +6,9 @@ const AboutUs = () => {
    return (
       <div>
          <Header></Header>
-         <h2>About Us</h2>
+         <div style={{ textAlign: 'center' }}>
+            <h2>About Us</h2>
+         </div>
          <Footer></Footer>
       </div>
    );

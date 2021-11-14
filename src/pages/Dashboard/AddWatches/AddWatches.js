@@ -18,7 +18,7 @@ const AddWatches = () => {
    };
 
    return (
-      <div className="add-watch">
+      <div style={{ textAlign: 'center' }} className="add-watch">
          <h2 className=" p-3">- Add watch -</h2>
          <form onSubmit={handleSubmit(onSubmit)}>
             <input

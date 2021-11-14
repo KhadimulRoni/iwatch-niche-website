@@ -2,7 +2,7 @@ import React from 'react';
 
 const ManageProducts = () => {
    return (
-      <div>
+      <div style={{ textAlign: 'center' }}>
          <h2>This is manage product page</h2>
       </div>
    );

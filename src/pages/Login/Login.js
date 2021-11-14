@@ -32,7 +32,7 @@ const Login = () => {
       signInWithGoogle(location, history);
    };
    return (
-      <div className="container p-5 w-50">
+      <div style={{ textAlign: 'center' }} className="container p-5 w-50">
          <div>
             <h2 className="text-primary p-3">Log in to your account</h2>
          </div>

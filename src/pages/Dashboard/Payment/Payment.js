@@ -2,7 +2,7 @@ import React from 'react';
 
 const Payment = () => {
    return (
-      <div>
+      <div style={{ textAlign: 'center' }}>
          <h2>Payment system coming soon...</h2>
       </div>
    );

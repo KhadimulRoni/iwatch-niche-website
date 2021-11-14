@@ -8,21 +8,12 @@ import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
 import PaymentIcon from '@mui/icons-material/Payment';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import HouseIcon from '@mui/icons-material/House';
 import ReviewsIcon from '@mui/icons-material/Reviews';
 import List from '@mui/material/List';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import {
-   BrowserRouter as Router,
-   Switch,
-   Route,
-   Link,
-   useParams,
-   useRouteMatch,
-} from 'react-router-dom';
-import Grid from '@mui/material/Grid';
+import { Switch, Route, Link, useRouteMatch } from 'react-router-dom';
 import { Button } from '@mui/material';
 import ManageOrders from '../../Home/Orders/ManageOrders/ManageOrders';
 import Orders from '../../Home/Orders/Orders/Orders';
@@ -38,8 +29,7 @@ const drawerWidth = 230;
 function Dashboard(props) {
    const { window } = props;
    const [mobileOpen, setMobileOpen] = React.useState(false);
-   const { user, logOut } = useAuth();
-
+   const { user, logOut, admin } = useAuth();
    let { path, url } = useRouteMatch();
 
    const handleDrawerToggle = () => {
@@ -50,7 +40,7 @@ function Dashboard(props) {
       <div
          style={{
             color: 'yellow',
-            backgroundColor: '#191970',
+            backgroundColor: '#353530',
             height: '100vh',
          }}
       >
@@ -81,6 +71,7 @@ function Dashboard(props) {
                   </Button>
                </Link>
             </li>
+
             <li style={{ display: 'flex', alignItems: 'center' }}>
                <ReviewsIcon />
                <Link style={{ textDecoration: 'none' }} to={`${url}/review`}>
@@ -89,45 +80,54 @@ function Dashboard(props) {
                   </Button>
                </Link>
             </li>
-
-            <li style={{ display: 'flex', alignItems: 'center' }}>
-               <ReviewsIcon />
-               <Link style={{ textDecoration: 'none' }} to={`${url}/addWatch`}>
-                  <Button className="text-white" color="inherit">
-                     Add Watch
-                  </Button>
-               </Link>
-            </li>
-            <li style={{ display: 'flex', alignItems: 'center' }}>
-               <ReviewsIcon />
-               <Link style={{ textDecoration: 'none' }} to={`${url}/makeAdmin`}>
-                  <Button className="text-white" color="inherit">
-                     Make Admin
-                  </Button>
-               </Link>
-            </li>
-            <li style={{ display: 'flex', alignItems: 'center' }}>
-               <ReviewsIcon />
-               <Link
-                  style={{ textDecoration: 'none' }}
-                  to={`${url}/manageProducts`}
-               >
-                  <Button className="text-white" color="inherit">
-                     Manage Products
-                  </Button>
-               </Link>
-            </li>
-            <li style={{ display: 'flex', alignItems: 'center' }}>
-               <ReviewsIcon />
-               <Link
-                  style={{ textDecoration: 'none' }}
-                  to={`${url}/manageOrders`}
-               >
-                  <Button className="text-white" color="inherit">
-                     Manage All Orders
-                  </Button>
-               </Link>
-            </li>
+            {admin && (
+               <Box>
+                  <li style={{ display: 'flex', alignItems: 'center' }}>
+                     <ReviewsIcon />
+                     <Link
+                        style={{ textDecoration: 'none' }}
+                        to={`${url}/addWatch`}
+                     >
+                        <Button className="text-white" color="inherit">
+                           Add Watch
+                        </Button>
+                     </Link>
+                  </li>
+                  <li style={{ display: 'flex', alignItems: 'center' }}>
+                     <ReviewsIcon />
+                     <Link
+                        style={{ textDecoration: 'none' }}
+                        to={`${url}/makeAdmin`}
+                     >
+                        <Button className="text-white" color="inherit">
+                           Make Admin
+                        </Button>
+                     </Link>
+                  </li>
+                  <li style={{ display: 'flex', alignItems: 'center' }}>
+                     <ReviewsIcon />
+                     <Link
+                        style={{ textDecoration: 'none' }}
+                        to={`${url}/manageProducts`}
+                     >
+                        <Button className="text-white" color="inherit">
+                           Manage Products
+                        </Button>
+                     </Link>
+                  </li>
+                  <li style={{ display: 'flex', alignItems: 'center' }}>
+                     <ReviewsIcon />
+                     <Link
+                        style={{ textDecoration: 'none' }}
+                        to={`${url}/manageOrders`}
+                     >
+                        <Button className="text-white" color="inherit">
+                           Manage All Orders
+                        </Button>
+                     </Link>
+                  </li>
+               </Box>
+            )}
          </List>
          <List>
             {user?.email ? (
@@ -148,6 +148,7 @@ function Dashboard(props) {
       <Box sx={{ display: 'flex' }}>
          <CssBaseline />
          <AppBar
+            style={{ backgroundColor: '#262626' }}
             position="fixed"
             sx={{
                width: { sm: `calc(100% - ${drawerWidth}px)` },
@@ -164,7 +165,7 @@ function Dashboard(props) {
                >
                   <MenuIcon />
                </IconButton>
-               <Typography variant="h6" noWrap component="div">
+               <Typography variant="h5" noWrap component="div">
                   Dashboard
                </Typography>
             </Toolbar>
@@ -207,7 +208,7 @@ function Dashboard(props) {
             </Drawer>
          </Box>
          <Box
-            style={{ backgroundColor: '#4682B4', height: '100vh' }}
+            style={{ backgroundColor: '#1c1b1f', height: '100vh' }}
             component="main"
             sx={{
                flexGrow: 1,

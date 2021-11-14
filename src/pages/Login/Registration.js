@@ -37,7 +37,7 @@ const Registration = () => {
       e.preventDefault();
    };
    return (
-      <div className="container pt-5 w-75">
+      <div style={{ textAlign: 'center' }} className="container pt-5 w-75">
          <div>
             <h2 className="text-primary p-3">Registration for new account</h2>
          </div>

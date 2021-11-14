@@ -14,17 +14,19 @@ const ExploreWatches = () => {
    return (
       <div>
          <Header></Header>
-         <h2>this is explore watches</h2>
-         <div className="row m-0 ">
-            {watches?.map(watch => (
-               <div
-                  style={{ alignItem: 'center', justifyContent: 'center' }}
-                  className="col-lg-3 col-sm-12 d-flex"
-                  key={watch._id}
-               >
-                  <ExploreWatch watch={watch}></ExploreWatch>
-               </div>
-            ))}
+         <div className="container">
+            <h2 style={{ textAlign: 'center' }}>EXPLORE WATCHES</h2>
+            <div className="row m-0 ">
+               {watches?.map(watch => (
+                  <div
+                     style={{ alignItem: 'center', justifyContent: 'center' }}
+                     className="col-lg-3 col-sm-12 d-flex"
+                     key={watch._id}
+                  >
+                     <ExploreWatch watch={watch}></ExploreWatch>
+                  </div>
+               ))}
+            </div>
          </div>
          <Footer></Footer>
       </div>

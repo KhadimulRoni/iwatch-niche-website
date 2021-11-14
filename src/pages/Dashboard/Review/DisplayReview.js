@@ -11,7 +11,7 @@ const DisplayReview = () => {
    }, []);
    return (
       <div>
-         <h2>Users Review</h2>
+         <h2 style={{ textAlign: 'center' }}>Users Review</h2>
          <div className="row m-0">
             {reviews?.map(review => (
                <div

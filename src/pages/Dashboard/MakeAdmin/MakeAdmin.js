@@ -29,7 +29,7 @@ const MakeAdmin = () => {
       e.preventDefault();
    };
    return (
-      <div>
+      <div style={{ textAlign: 'center' }}>
          <h2>MAKE ADMIN</h2>
          <form onSubmit={handleOnSubmit}>
             <TextField
@@ -49,6 +49,7 @@ const MakeAdmin = () => {
                SUBMIT
             </Button>
          </form>
+         <br />
          {success && (
             <Alert severity="success">Admin Successfully Added !</Alert>
          )}

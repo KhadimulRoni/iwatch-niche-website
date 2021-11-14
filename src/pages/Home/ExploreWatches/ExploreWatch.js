@@ -13,24 +13,26 @@ const ExploreWatch = props => {
    const { watch } = props;
    const { _id, name, description, img, price } = watch;
    return (
-      <div className="d-flex p-3">
-         <Card style={{ width: '20rem' }}>
+      <div style={{ textAlign: 'center' }} className="d-flex p-3">
+         <Card style={{ width: '18rem' }}>
             <Card.Img
-               style={{ width: '100%', height: '250px' }}
+               style={{ width: '70%', margin: 'auto' }}
                variant="top"
                src={img}
             />
-            <Card.Body>
-               <Card.Title className="tour-title p-2">{name}</Card.Title>
+            <Card.Body style={{ justifyContent: 'space-between' }}>
+               <Card.Title className="tour-title p-2">
+                  {name.slice(0, 20)}
+               </Card.Title>
                <Card.Text>{description}</Card.Text>
-               <div className="price-container d-flex p-2">
-                  <h5 className="text-info">
-                     Price: <span className="price text-danger">{price}</span>
-                  </h5>
-               </div>
+
+               <h5 className="text-info p-2">
+                  Price: <span className="price text-danger">{price}$</span>
+               </h5>
+
                <Link to={`/exploreWatch/${_id}`}>
                   <Button variant="warning" className="px-5 my-3">
-                     Book Now
+                     BUY NOW
                   </Button>
                </Link>
             </Card.Body>

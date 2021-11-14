@@ -19,7 +19,7 @@ const Review = () => {
    };
 
    return (
-      <div>
+      <div style={{ textAlign: 'center' }}>
          <h2 className="text-white mb-3">Review</h2>
          <form onSubmit={handleSubmit(onSubmit)}>
             <input
