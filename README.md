@@ -14,6 +14,8 @@ I have deployed in Firebase this client side........
 
 ### Live Link
 
+https://iwatch-645e0.web.app
+
 ## Available Scripts
 
 In the project directory, you can run:
@@ -23,3 +25,5 @@ In the project directory, you can run:
 ### npm run build
 
 ### `yarn build`
+
+###firebase deploy
