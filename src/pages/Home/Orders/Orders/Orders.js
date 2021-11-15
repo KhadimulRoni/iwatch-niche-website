@@ -17,12 +17,14 @@ const Orders = () => {
    }
 
    const handleDelete = id => {
-      fetch(`http://localhost:5000/deleteOrder/${id}`, {
+      fetch(`https://glacial-hamlet-57290.herokuapp.com/deleteOrder/${id}`, {
          method: 'DELETE',
          headers: { 'Content-Type': 'application/json' },
       })
          .then(res => res.json())
          .then(data => console.log(data));
+
+      alert('Order deleted successfully');
    };
 
    return (
