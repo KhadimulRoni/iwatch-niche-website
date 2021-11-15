@@ -50,6 +50,11 @@ const PlaceOrders = () => {
                <form onSubmit={handleSubmit(onSubmit)}>
                   <input
                      {...register('name')}
+                     defaultValue={user?.name}
+                     required
+                  />
+                  <input
+                     {...register('name')}
                      defaultValue={singleWatch?.name}
                      required
                   />

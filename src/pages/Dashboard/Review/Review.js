@@ -26,12 +26,23 @@ const Review = () => {
          <form onSubmit={handleSubmit(onSubmit)}>
             <input
                className="my-2 w-50"
+               {...register('name', { required: true })}
+               defaultValue={user?.name}
+               name="name"
+               type="text"
+               placeholder="name"
+               required
+            />
+            <br />
+            <input
+               className="my-2 w-50"
                {...register('email', { required: true })}
                value={user?.email}
                name="email"
                type="email"
                required
             />
+
             <br />
             <textarea
                className="mb-2 w-50"
