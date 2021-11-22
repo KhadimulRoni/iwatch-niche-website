@@ -58,31 +58,44 @@ function Dashboard(props) {
 
          <Divider />
          <List className="p-3 ">
-            <li style={{ display: 'flex', alignItems: 'center' }}>
-               <ShoppingCartIcon />
-               <Link style={{ textDecoration: 'none' }} to={`${url}/orders`}>
-                  <Button className="text-white" color="inherit">
-                     MY ORDERS
-                  </Button>
-               </Link>
-            </li>
-            <li style={{ display: 'flex', alignItems: 'center' }}>
-               <PaymentIcon />
-               <Link style={{ textDecoration: 'none' }} to={`${url}/payment`}>
-                  <Button className="text-white" color="inherit">
-                     PAYMENT
-                  </Button>
-               </Link>
-            </li>
+            {!admin && (
+               <Box>
+                  <li style={{ display: 'flex', alignItems: 'center' }}>
+                     <ShoppingCartIcon />
+                     <Link
+                        style={{ textDecoration: 'none' }}
+                        to={`${url}/orders`}
+                     >
+                        <Button className="text-white" color="inherit">
+                           MY ORDERS
+                        </Button>
+                     </Link>
+                  </li>
+                  <li style={{ display: 'flex', alignItems: 'center' }}>
+                     <PaymentIcon />
+                     <Link
+                        style={{ textDecoration: 'none' }}
+                        to={`${url}/payment`}
+                     >
+                        <Button className="text-white" color="inherit">
+                           PAYMENT
+                        </Button>
+                     </Link>
+                  </li>
 
-            <li style={{ display: 'flex', alignItems: 'center' }}>
-               <ReviewsIcon />
-               <Link style={{ textDecoration: 'none' }} to={`${url}/review`}>
-                  <Button className="text-white" color="inherit">
-                     REVIEW
-                  </Button>
-               </Link>
-            </li>
+                  <li style={{ display: 'flex', alignItems: 'center' }}>
+                     <ReviewsIcon />
+                     <Link
+                        style={{ textDecoration: 'none' }}
+                        to={`${url}/review`}
+                     >
+                        <Button className="text-white" color="inherit">
+                           REVIEW
+                        </Button>
+                     </Link>
+                  </li>
+               </Box>
+            )}
             {admin && (
                <Box>
                   <li style={{ display: 'flex', alignItems: 'center' }}>
@@ -211,7 +224,7 @@ function Dashboard(props) {
             </Drawer>
          </Box>
          <Box
-            style={{ backgroundColor: '#1c1b1f', height: '100vh' }}
+            style={{ backgroundColor: '#1c1b1f', height: '100hv' }}
             component="main"
             sx={{
                flexGrow: 1,

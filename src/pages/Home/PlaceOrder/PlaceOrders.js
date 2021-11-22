@@ -46,7 +46,9 @@ const PlaceOrders = () => {
                </h3>
             </div>
             <div className="col-lg-6 col-sm-12 add-watch">
-               <h2 className=" p-3">- Order Info -</h2>
+               <h2 style={{ textAlign: 'center' }} className=" p-3">
+                  - Order Info -
+               </h2>
                <form onSubmit={handleSubmit(onSubmit)}>
                   <input
                      {...register('name')}

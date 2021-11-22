@@ -12,17 +12,10 @@ const Footer = () => {
    const { user, logOut } = useAuth();
    return (
       <div>
-         <div style={{ margin: 'auto', width: '85%' }}>
-            <div className="row m-0 py-5">
-               <div
-                  style={{
-                     alignItems: 'center',
-                     justifyContent: 'center',
-                     margin: 'auto',
-                  }}
-                  className="col d-flex"
-               >
-                  <div className="col-lg-4 col-sm-12 p-3 px-5">
+         <div style={{ textAlign: 'center' }}>
+            <div className="py-3 mt-5">
+               <div className="row m-0 ">
+                  <div className="col-md-4  p-3 px-5">
                      <h3>iWaTcH</h3>
                      <p>
                         Trusted watch shop near you.WE always try to provide
@@ -30,7 +23,7 @@ const Footer = () => {
                         customers..
                      </p>
                   </div>
-                  <div className="col-lg-4 col-sm-12 p-3">
+                  <div className="col-md-4  p-3">
                      <Nav.Link as={Link} to="/home" className="text-dark">
                         Home
                      </Nav.Link>
@@ -74,7 +67,7 @@ const Footer = () => {
                         Signed in as: <a href="#login">{user?.displayName}</a>
                      </Navbar.Text>
                   </div>
-                  <div className="col-lg-4 col-sm-12 p-3">
+                  <div className="col-md-4  p-3">
                      <h5 className="py-3 ">Newsletter</h5>
                      <input
                         style={{

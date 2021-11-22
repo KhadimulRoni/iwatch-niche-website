@@ -29,7 +29,7 @@ const MakeAdmin = () => {
       e.preventDefault();
    };
    return (
-      <div style={{ textAlign: 'center' }}>
+      <div style={{ textAlign: 'center', width: '100%', height: '100vh' }}>
          <h2>MAKE ADMIN</h2>
          <form onSubmit={handleOnSubmit}>
             <TextField

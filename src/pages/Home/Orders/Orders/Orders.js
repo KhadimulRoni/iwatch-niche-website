@@ -25,10 +25,11 @@ const Orders = () => {
          .then(data => console.log(data));
 
       alert('Order deleted successfully');
+      window.location.reload();
    };
 
    return (
-      <div style={{ textAlign: 'center' }}>
+      <div style={{ textAlign: 'center', width: '100%', height: '100vh' }}>
          <h2>MY ORDERS</h2>
          <div className="row m-0">
             {orders?.map(order => (

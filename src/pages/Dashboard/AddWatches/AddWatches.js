@@ -17,17 +17,17 @@ const AddWatches = () => {
                reset();
             }
          });
+      console.log(data);
    };
 
    return (
-      <div style={{ textAlign: 'center' }} className="add-watch">
+      <div
+         style={{ textAlign: 'center', width: '100%', height: '100vh' }}
+         className="add-watch"
+      >
          <h2 className=" p-3">- Add watch -</h2>
          <form onSubmit={handleSubmit(onSubmit)}>
-            <input
-               {...register('name', { required: true, maxLength: 20 })}
-               placeholder="Name"
-               required
-            />
+            <input {...register('name')} placeholder="Name" required />
             <textarea
                {...register('description')}
                placeholder="Description"
